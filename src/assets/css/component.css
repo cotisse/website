@@ -75,3 +75,17 @@
     color:white;
     
  }
+.btn-template{
+    color : white;
+    cursor: pointer;
+    padding : 10px;
+    border : 0px;
+    font-size: 15px;
+    margin-right : 5px;
+}
+ .valider{
+     background-color: #7774e7;
+ }
+ .supp{
+    background-color: red;
+ }

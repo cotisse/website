@@ -20,7 +20,7 @@ const request = (options) => {
             }
             return json;
         })
-    ).catch(error => console.log(error))
+    );
 };
 
 
