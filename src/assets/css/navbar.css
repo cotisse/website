@@ -25,6 +25,11 @@ header {
     position: sticky;
     top:0;
 }
+.fixed-pos{
+    position: fixed;
+    top: 0;
+    width: 98%;
+}
 @media screen and (min-width : 1000px){
     .header-padding-responsive {
         padding-left : 150px;

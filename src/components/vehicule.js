@@ -52,7 +52,11 @@ class Vehicule extends Component{
             var tds = [];
             for(var col = 0 ; col < colonne ; col++,p++){
                 if(p < places.length){
-                    let color_chaise = ""
+                    let color_chaise = "";
+                    let chaise_state = "";
+                    if(places[p].int_state === 0){
+                        color_chaise =" dsp-none";
+                    }
                     if(places[p].etat === 0){
                         color_chaise += " disabled"
                     }

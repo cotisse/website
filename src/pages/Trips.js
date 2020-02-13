@@ -60,7 +60,7 @@ class Trips extends Component{
             'depart':this.props.location.data[0],
             'arrival':this.props.location.data[1],
             'date':this.props.location.data[2],
-            'number':this.props.location.data[3] },  
+            'number':this.props.location.data[3]+4 },  
                 data => {     
                     if(data.length == 0){
                         this.setState({message : "aucun résultat"});
@@ -78,12 +78,12 @@ class Trips extends Component{
                 'depart':this.state.selectedDep,
                 'arrival':this.state.selectedArr,
                 'date':this.state.date,
-                'number':this.state.number },  
+                'number':this.state.number+4 },  
                     data => {     
                         if(data.length == 0){
                             this.setState({message : "aucun résultat"});
                         }
-                        console.log(data);
+                        // console.log(data);
                         this.setState({searchResult : data});
                     }
                 );
@@ -126,23 +126,19 @@ class Trips extends Component{
         let contain = false;
         for(let i = 0 ; i < panier.length ; i++){
             if(panier[i].id_place == place.id_place && panier[i].idTrip == place.idTrip){
-                console.log("mitovy");
                 contain = true;
                 panier.splice(i,1);
             }
         }
         if(!contain){
             if(this.state.panier.length < 4){
-               
                 var joined = this.state.panier.concat(place);
                 this.setState({ panier: joined })
             }
         }else{
             var removed = panier;
             this.setState({ panier: removed })
-
         }
-        // console.log(place);
     }
     validateCart(){
         const panier = this.state.panier;
@@ -206,24 +202,20 @@ class Trips extends Component{
                         </div>
                         <div className="three">
                             <div className="self-top">
-                                <p>départ: <span className="code dep-info">{getTime(trip.departureDate)}</span> {getschedule(trip.departureDate)}</p>
+                                <p> <span className="code dep-info">{getTime(trip.departureDate)}</span> {getschedule(trip.departureDate)}</p>
                             </div>
-                            <div>-></div>
-                            <div>
-                                Places libres: <span className="code-min">{trip.libre - 1}</span>
+                            <div class="fleche">-></div>
+                            <div class="self-bottom">
+                                Places libres: <span className="code-min">{trip.libre - 4}</span>
                             </div>
                         </div>
-                        <div clclassNameass="four">
+                        <div className="four">
                             <span className="code">{trip.arrivalCode}</span>
                             <span>{trip.arrivalCity}</span>
                         </div>
                         <div className="five">
                             <Vehicule panier={this.state.panier} onClickPlace={this.handleClickPlace} data={trip.places}/>
                         </div>
-                        {/* <p>{trip.departCity} - {trip.arrivalCity}</p>
-                        <p>classe : {trip.classe}</p>
-                        <p>departureDate : {trip.departureDate}</p>
-                        <p>départ : {getTime(trip.departureDate)+" "+getschedule(trip.departureDate)}</p> */}
                     </div>
                 ); 
             });
@@ -231,7 +223,7 @@ class Trips extends Component{
         return (
             <div>
             <div className="wrapper">
-            <Navbar class="nav-border-bottom header-trip" lien="lien-grey" trip="active-blue" logo="logo2" activeColor="blue" menu="menu-item-trip" >
+            <Navbar class=" nav-border-bottom header-trip" lien="lien-grey" trip="active-blue" logo="logo2" activeColor="blue" menu="menu-item-trip" >
                 <div onClick={() => {this.props.history.push("/login")}} className=" menu-item"><button className="myButton green-btn">Se connecter</button></div>
             </Navbar>
             </div>
@@ -254,7 +246,7 @@ class Trips extends Component{
                             </select>
                         </div>
                         <div className="input-t-1">
-                            <input value={this.state.date} id="myDate" className="myInputTrip" type="date" min={currdate} onChange={(e) => this.setState({date : e.target.value,dateError:""})} />
+                            <input  value={this.state.date} id="myDate" className="myInputTrip" type="date" min={currdate} onChange={(e) => this.setState({date : e.target.value,dateError:""})} />
                         </div>
                         <div className="input-t-1 ">
                                 <div className="flex-box-inline">
@@ -343,9 +335,11 @@ class Trips extends Component{
                                 </span>
                             </div>
                         </div>
+                        
                         <div className={"list "+cond_panier_for_list}>
                            {rows}
                         </div>
+                      
                  </div>}
                  {this.state.searchResult.length == 0 &&
                     <div className="message ">

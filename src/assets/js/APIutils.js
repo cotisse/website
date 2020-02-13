@@ -1,12 +1,15 @@
-import BASE_URL from 'constants';
+
+// const BASE_URL = "http://localhost:5001";
+const BASE_URL = "https://cotisses5.herokuapp.com";
+
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin' : options.url
     })
     
-    if(localStorage.getItem('accessToken')) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem('accessToken'))
+    if(localStorage.getItem("accessToken")) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem("accessToken"))
     }
 
     const defaults = {headers: headers};
@@ -35,4 +38,10 @@ export function getCities() {
           return error;
         }
       );
+}
+export function getMyReservations() {
+    return request({
+        url: BASE_URL+"/api/web/reservations",
+        method: 'GET'
+    });
 }

@@ -13,7 +13,11 @@ export function formatDate() {
 
     return [year, month, day].join('-');
 }
+export function formatDateDisplay(date){
+var a = new Date(date).toDateString;
 
+return a;
+}
 export function getTimeCategory(stime) {
     let timeCategory = '';
     const timeFormat = 'HH:mm:ss';
@@ -43,7 +47,6 @@ export function getTimeCategory(stime) {
     ) {
       timeCategory = 'soir';
     }
-  
     return timeCategory;
   }
 
